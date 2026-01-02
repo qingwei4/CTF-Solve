@@ -6,6 +6,7 @@ I'm a little busy during this CTF, so I only solve `h_wix_p` during the CTF. The
 h_wix_p
 ---
 It's a customized kernel modified from Fiwix.
+
 https://github.com/mikaku/Fiwix
 
 In sys_read and sys_write, Fiwix call check_user_area().
@@ -56,7 +57,7 @@ int sys_setuid(__uid_t uid)
 }
 ```
 In IDA it looks like this. But when I tried to leak `dword_C0144CF8`, I get 0x0 so I use gdb to check.
-There is another symbols call `current` at `0xc0144cf8` and it is the correct address.
+There is another symbols call `current` at `0xc0144bf8` and it is the correct address.
 ```c
 int __cdecl sys_setuid(__int16 a1)
 {
@@ -78,7 +79,7 @@ LABEL_3:
 ```
 
 ### Exploit
-leak current from `0xc0144cf8` and overwrite uids to LPE
+leak current from `0xc0144bf8` and overwrite uids to LPE
 Initially I use normal library function to write exploit but the binary crashed in qemu.
 So I use assembly in my final exploit
 flag : `hxp{Don't panic wixer! it's just a nice hobby and not 🐧} `
