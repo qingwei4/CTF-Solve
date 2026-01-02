@@ -57,7 +57,7 @@ int sys_setuid(__uid_t uid)
 }
 ```
 In IDA it looks like this. But when I tried to leak `dword_C0144CF8`, I get 0x0 so I use gdb to check.
-There is another symbols call `current` at `0xc0144bf8` and it is the correct address.
+There is another symbols named `current` at `0xc0144bf8` and it is the correct address.
 ```c
 int __cdecl sys_setuid(__int16 a1)
 {
